@@ -31,6 +31,32 @@ function operate(num1, num2, operator) {
     }
 }
 
-let num1;
-let num2;
-let operator;
+function enterNumber(num) {
+    if (operator === "") {
+        num1 += num;
+        display.textContent = num1;
+    } else {
+        num2 += num;
+        display.textContent = num2;
+    }
+}
+
+let num1 = "";
+let num2 = "";
+let operator = "";
+
+let display = document.querySelector("#display");
+let buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => button.addEventListener(
+    "click", (event) => {
+        let buttonId = event.target.id;
+        if (buttonId === "add" || buttonId === "subtract" ||
+            buttonId === "multiply" || buttonId === "divide") {
+                operator = buttonId;
+        } else {
+            enterNumber(buttonId)
+        }
+    })
+);
+
