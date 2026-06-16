@@ -14,36 +14,57 @@ function divide(a, b) {
     return a / b;
 }
 
-function operate(num1, num2, operator) {
-    switch (operator) {
-        case "+":
-            return add(num1, num2);
+function operate(a, b, operation) {
+    a = +a;
+    b = +b;
+
+    switch (operation) {
+        case "add":
+            result = add(a, b);
             break;
-        case "-":
-            return subtract(num1, num2);
+        case "subtract":
+            result = subtract(a, b);
             break;
-        case "x":
-            return multiply(num1, num2);
+        case "multiply":
+            result = multiply(a, b);
             break;
-        case "/":
-            return divide(num1, num2);
+        case "divide":
+            result = divide(a, b);
             break;
     }
+    
+    display.textContent = result;
+    num1 = result;
+    num2 = "";
+    operator = "";
+    result = "";
 }
 
 function enterNumber(num) {
     if (operator === "") {
         num1 += num;
         display.textContent = num1;
+    } else if (num2 !== "" && result !== "") {
+        num2 = num;
+        display.textContent = num2;
     } else {
         num2 += num;
         display.textContent = num2;
     }
 }
 
+function enterOperator(operation) {
+    if (num1 !== "" && num2 !== "") {
+        operate(num1, num2, operator);
+    }
+
+    operator = operation;
+}
+
 let num1 = "";
 let num2 = "";
 let operator = "";
+let result = "";
 
 let display = document.querySelector("#display");
 let buttons = document.querySelectorAll("button");
@@ -53,10 +74,17 @@ buttons.forEach(button => button.addEventListener(
         let buttonId = event.target.id;
         if (buttonId === "add" || buttonId === "subtract" ||
             buttonId === "multiply" || buttonId === "divide") {
-                operator = buttonId;
-        } else {
+            enterOperator(buttonId);
+        } else if (buttonId === "equal") {
+            operate(num1, num2, operator);            
+        } 
+        else {
             enterNumber(buttonId)
         }
+
+        console.log("num1: " + num1);
+        console.log("num2: " + num2);
+        console.log("operator: " + operator);
     })
 );
 
