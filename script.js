@@ -29,6 +29,12 @@ function operate(a, b, operation) {
             result = multiply(a, b);
             break;
         case "divide":
+            if (b === 0) {
+                clearCalculator();
+                display.textContent = "Nice try :)";
+                return;
+            }
+
             result = divide(a, b);
             break;
         default:
