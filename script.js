@@ -31,6 +31,8 @@ function operate(a, b, operation) {
         case "divide":
             result = divide(a, b);
             break;
+        default:
+            return;
     }
     
     display.textContent = result;
@@ -84,7 +86,7 @@ buttons.forEach(button => button.addEventListener(
             buttonId === "multiply" || buttonId === "divide") {
             enterOperator(buttonId);
         } else if (buttonId === "equal") {
-            operate(num1, num2, operator);            
+            operate(num1, num2, operator);
         } else if (buttonId === "clear") {
             clearCalculator();
         }
