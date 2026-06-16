@@ -61,6 +61,14 @@ function enterOperator(operation) {
     operator = operation;
 }
 
+function clearCalculator() {
+    num1 = "";
+    num2 = "";
+    operator = "";
+    result = "";
+    display.textContent = "0";
+}
+
 let num1 = "";
 let num2 = "";
 let operator = "";
@@ -77,7 +85,9 @@ buttons.forEach(button => button.addEventListener(
             enterOperator(buttonId);
         } else if (buttonId === "equal") {
             operate(num1, num2, operator);            
-        } 
+        } else if (buttonId === "clear") {
+            clearCalculator();
+        }
         else {
             enterNumber(buttonId)
         }
