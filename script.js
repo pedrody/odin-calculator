@@ -89,26 +89,21 @@ let result = "";
 let shouldStartNewCalculation = false;
 
 let display = document.querySelector("#display");
-let buttons = document.querySelectorAll("button");
+let digits = document.querySelectorAll("#digit");
+let operators = document.querySelectorAll(
+    "#multiply, #subtract, #add, #divide");
+let equalButton = document.querySelector("#equal");
+let clearButton = document.querySelector("#clear");
 
-buttons.forEach(button => button.addEventListener(
-    "click", (event) => {
-        let buttonId = event.target.id;
-        if (buttonId === "add" || buttonId === "subtract" ||
-            buttonId === "multiply" || buttonId === "divide") {
-            enterOperator(buttonId);
-        } else if (buttonId === "equal") {
-            operate(num1, num2, operator);
-        } else if (buttonId === "clear") {
-            clearCalculator();
-        }
-        else {
-            enterNumber(buttonId)
-        }
+digits.forEach(digit => digit.addEventListener(
+    "click", (event) => enterNumber(event.target.textContent)
+));
 
-        console.log("num1: " + num1);
-        console.log("num2: " + num2);
-        console.log("operator: " + operator);
-    })
-);
+operators.forEach(op => op.addEventListener(
+    "click", (event) => enterOperator(event.target.id)
+));
 
+equalButton.addEventListener("click", () => 
+    operate(num1, num2, operator));
+
+clearButton.addEventListener("click", () => clearCalculator());
