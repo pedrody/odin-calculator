@@ -46,10 +46,15 @@ function operate(a, b, operation) {
     num2 = "";
     operator = "";
     result = "";
+    shouldStartNewCalculation = true;
 }
 
 function enterNumber(num) {
-    if (operator === "") {
+    if (shouldStartNewCalculation && operator === "") {
+        num1 = num;
+        display.textContent = num1;
+        shouldStartNewCalculation = false;
+    } else if (operator === "") {
         num1 += num;
         display.textContent = num1;
     } else if (num2 !== "" && result !== "") {
@@ -81,6 +86,7 @@ let num1 = "";
 let num2 = "";
 let operator = "";
 let result = "";
+let shouldStartNewCalculation = false;
 
 let display = document.querySelector("#display");
 let buttons = document.querySelectorAll("button");
