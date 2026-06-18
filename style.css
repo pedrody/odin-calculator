@@ -11,6 +11,11 @@ body {
     justify-content: center;
 }
 
+button:hover {
+    cursor: pointer;
+    background-color: rgb(172, 172, 172);
+}
+
 #display {
     background-color: #fefefe;
     font-size: 48px;
