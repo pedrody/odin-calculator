@@ -120,6 +120,31 @@ function deleteDigit() {
     }
 }
 
+function handleKeyboard(event) {
+    let numbers = "0123456789."
+    let operators = "x-+/";
+    
+    if (numbers.includes(event.key)) {
+        enterNumber(event.key);
+    } else if (operators.includes(event.key)) {
+        if (event.key === "+") {
+            enterOperator("add");
+        } else if (event.key === "-") {
+            enterOperator("subtract");
+        } else if (event.key === "x") {
+            enterOperator("multiply");
+        } else {
+            enterOperator("divide");
+        }
+    } else if (event.key === "Enter") {
+        equalButton.click();
+    } else if (event.key === "c") {
+        clearCalculator();
+    } else if (event.key === "Backspace") {
+        backspaceButton.click();
+    }
+}
+
 let num1 = "";
 let num2 = "";
 let operator = "";
@@ -148,3 +173,6 @@ equalButton.addEventListener("click", () =>
 clearButton.addEventListener("click", () => clearCalculator());
 
 backspaceButton.addEventListener("click", () => deleteDigit());
+
+document.addEventListener("keydown", (event) => 
+    handleKeyboard(event))
