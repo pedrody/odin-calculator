@@ -82,6 +82,32 @@ function clearCalculator() {
     display.textContent = "0";
 }
 
+function deleteDigit() {
+    if (num1 === "" && num2 === "") {
+        return;
+    }
+
+    if (operator !== "") {
+        num2 = num2.toString().slice(0, -1);
+        
+        if (num2 === "") {
+            display.textContent = "0";
+            return;
+        }
+
+        display.textContent = num2;
+    } else {
+        num1 = num1.toString().slice(0, -1);
+
+        if (num1 === "") {
+            display.textContent = "0";
+            return;
+        }
+
+        display.textContent = num1;
+    }
+}
+
 let num1 = "";
 let num2 = "";
 let operator = "";
@@ -94,6 +120,7 @@ let operators = document.querySelectorAll(
     "#multiply, #subtract, #add, #divide");
 let equalButton = document.querySelector("#equal");
 let clearButton = document.querySelector("#clear");
+let backspaceButton = document.querySelector("#backspace");
 
 digits.forEach(digit => digit.addEventListener(
     "click", (event) => enterNumber(event.target.textContent)
@@ -107,3 +134,5 @@ equalButton.addEventListener("click", () =>
     operate(num1, num2, operator));
 
 clearButton.addEventListener("click", () => clearCalculator());
+
+backspaceButton.addEventListener("click", () => deleteDigit());
