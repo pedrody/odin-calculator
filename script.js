@@ -50,6 +50,18 @@ function operate(a, b, operation) {
 }
 
 function enterNumber(num) {
+    if (num === ".") {
+        let currentNum = operator === "" ? num1 : num2;
+        
+        if (currentNum.toString().includes(".")) {
+            return;
+        }
+
+        if (currentNum === "") {
+            num = "0.";
+        }
+    }
+
     if (shouldStartNewCalculation && operator === "") {
         num1 = num;
         display.textContent = num1;
