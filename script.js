@@ -57,7 +57,7 @@ function enterNumber(num) {
             return;
         }
 
-        if (currentNum === "") {
+        if (currentNum === "" || shouldStartNewCalculation) {
             num = "0.";
         }
     }
